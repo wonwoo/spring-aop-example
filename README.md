@@ -119,4 +119,4 @@ public class User {
 }
 ```
 
-참고 : 설정을 해줘야 될것이 있는데 **@EnableSpringConfigured**이나 **<context:spring-configured />** 을 설정 해야된다.
+참고 : 설정을 해줘야 될것이 있는데 `@EnableSpringConfigured`이나 `<context:spring-configured />` 을 설정 해야된다.
