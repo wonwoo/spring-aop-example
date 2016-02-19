@@ -6,9 +6,10 @@ import org.springframework.context.annotation.aspectj.EnableSpringConfigured;
 
 @SpringBootApplication
 @EnableSpringConfigured
-public class SpringAopExampleApplication{
+public class SpringAopExampleApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringAopExampleApplication.class, args);
 	}
+
 }
