@@ -1,8 +1,11 @@
 package me.wonwoo.aop;
 
+import me.wonwoo.exception.UserException;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 /**
@@ -12,6 +15,8 @@ import org.springframework.stereotype.Component;
 @Aspect
 public class AspectAop {
 
+    Logger logger = LoggerFactory.getLogger(this.getClass());
+
 
     @Pointcut("execution(* me..*Service.*(..))")
     private void helloPointCut(){
@@ -19,30 +24,42 @@ public class AspectAop {
 
     @Before("helloPointCut()")
     public void logJoinPoint(JoinPoint jp) {
-        System.out.println("Before");
-        System.out.println(
-                jp.getSignature().getDeclaringTypeName()
-        );
-        System.out.println(
-                jp.getSignature().getName()
-        );
+        logger.info("Before");
+        logger.info(jp.getSignature().getDeclaringTypeName());
+        logger.info(jp.getSignature().getName());
         for(Object arg : jp.getArgs()) {
-            System.out.println(arg);
+            logger.info(arg + "");
         }
     }
 
     @Around("helloPointCut()")
     public Object helloAround(ProceedingJoinPoint pjp) throws Throwable {
-        System.out.println("Around");
-        System.out.println("전처리");
+        logger.info("Around");
+        logger.info("전처리");
         Object ret = pjp.proceed();
-        System.out.println("후처리");
+        logger.info("후처리");
         return ret;
     }
 
     @AfterReturning(pointcut="helloPointCut()", returning="name")
     public void logReturnValue(String name) {
-        System.out.println("AfterReturning");
-        System.out.println(name);
+        logger.info("AfterReturning");
+        logger.info(name);
+    }
+
+    @AfterThrowing(pointcut = "helloPointCut()", throwing = "e")
+    public void logThrowValue(UserException e){
+        logger.info("exception");
+        logger.info(e.getId());
+    }
+
+    @After("helloPointCut()")
+    public void logAfterValue(JoinPoint jp) {
+        logger.info("after");
+        logger.info(jp.getSignature().getDeclaringTypeName());
+        logger.info(jp.getSignature().getName());
+        for(Object arg : jp.getArgs()) {
+            logger.info(arg + "");
+        }
     }
 }

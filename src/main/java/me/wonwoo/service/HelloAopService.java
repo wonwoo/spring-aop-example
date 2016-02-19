@@ -1,5 +1,6 @@
 package me.wonwoo.service;
 
+import me.wonwoo.exception.UserException;
 import org.springframework.stereotype.Component;
 
 /**
@@ -13,6 +14,9 @@ public class HelloAopService {
     }
 
     public String getName(){
+//        if(true){
+//            throw new UserException("wonwoo");
+//        }
         return "wonwoo";
     }
 }

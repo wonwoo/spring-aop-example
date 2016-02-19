@@ -10,13 +10,8 @@ import org.springframework.beans.factory.annotation.Configurable;
 @Configurable(preConstruction = true)
 public class User {
 
-
-    private HelloAopService helloAopService;
-
     @Autowired
-    public void setHelloAopService(HelloAopService helloAopService){
-        this.helloAopService = helloAopService;
-    }
+    private HelloAopService helloAopService;
 
     public String getName(){
         return helloAopService.getName();
