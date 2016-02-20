@@ -53,10 +53,10 @@
 				<version>1.8</version>
 				<configuration>
 					<showWeaveInfo>true</showWeaveInfo>
-					<source>1.6</source>
-					<target>1.6</target>
+					<source>1.8</source>
+					<target>1.8</target>
 					<Xlint>ignore</Xlint>
-					<complianceLevel>1.6</complianceLevel>
+					<complianceLevel>1.8</complianceLevel>
 					<encoding>UTF-8</encoding>
 					<verbose>false</verbose>
 					<aspectLibraries>
@@ -86,6 +86,14 @@
 						<version>1.8.8</version>
 					</dependency>
 				</dependencies>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
